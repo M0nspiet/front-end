@@ -1,5 +1,3 @@
-import React from "react"; 
-export const player = () => {
 var playlist = [
 	{
 		"song": "Control",
@@ -276,4 +274,3 @@ volume.oninput = function () {
 music.addEventListener("canplay", function () {
 	duration = music.duration;
 }, false);
-}
