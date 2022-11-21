@@ -8,6 +8,7 @@ import { Img } from "next/image";
 export default function IndexPage(){
     const [content, setContent] = useState("");
     const [value, setValue] = useState("");
+    const [valuet, setValuet] = useState("");
     const [page, setPage] = useState(0);
     const [pagel, setPagel] = useState(0);
     const [time, setTime ] = useState(0);
@@ -19,8 +20,11 @@ export default function IndexPage(){
     function handleClick(e){
         e.preventDefault(); 
         if (!value) return;
-        setContent(LastState => [{ title: value}, ...(LastState || [])]);
+        if (!valuet) return;
+        setContent(LastState => [{ thumbnailUrl: value}, ...(LastState || [])]);
+        setContent(LastState => [{ title: valuet}, ...(LastState || [])]);
         setValue("");
+        setValuet("");
     }
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/photos')
@@ -35,14 +39,13 @@ export default function IndexPage(){
     }, []);
     
     //https://jsonplaceholder.typicode.com/photos
-    //https://static.wikia.nocookie.net/codegeass/images/7/7e/1295504746.jpg/revision/latest?cb=20140311192830
+    //https://images.saymedia-content.com/.image/t_share/MTgyMjA3MTcxOTU2NzEyNTc5/best-geass-code-geass.jpg
     return (
         <div>
             <form onSubmit={handleClick}>
-                <Button type="submit">Add txt</Button>
-                <input type="text" value={value} onChange={e => setValue(e.target.value)}/>
-                <Button type="button" onClick={() => setPagel(p => p - 1)}>pref-({pagel})</Button>
-                <Button type="button" onClick={() => setPage(p => p + 1)}>next-({page})</Button>
+                <p><Button type="submit">Add picture</Button>
+                <input type="text" placeholder="picture Title" value={valuet} onChange={e => setValuet(e.target.value)}/></p>
+                <input type="url" placeholder="http//img.jpg" value={value} onChange={e => setValue(e.target.value)}/>                <Button type="button" onClick={() => setPage(p => p + 1)}>next-({page})</Button>
             </form>
             <span>{time}</span>
             { content && <List content={content?.slice(page*10, (page + 1) * 10)} /> }

@@ -6,11 +6,14 @@ import { Img } from "next/image";
 
 export default function p2Page(){
 
-    const [content, setContent] = useState("");
+    const [content, setContent, setContentt] = useState("");
     const [value, setValue] = useState("");
+    const [valuet, setValuet] = useState("");
     const [page, setPage] = useState(0);
     const [pagel, setPagel] = useState(0);
     const [time, setTime ] = useState(0);
+    const [image, setImage] = useState({ preview: "", raw: "" });
+    
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/photos')
@@ -31,8 +34,9 @@ export default function p2Page(){
     function handleClick(e){
         e.preventDefault(); 
         if (!value) return;
-        setContent(LastState => [{ title: value}, ...(LastState || [])]);
+        setContent(LastState => [{ thumbnailUrl: value}, ...(LastState || [])]);
         setValue("");
+        setValuet("");
         //if (e.target.files.length) {
             //setImage({
                 //preview: URL.createObjectURL(e.target.files[0]),
@@ -40,27 +44,17 @@ export default function p2Page(){
             //});
         //}
     }
-
-    const [image, setImage] = useState({ preview: "", raw: "" });
-
-    //const handleChange = e => {
-        //if (e.target.files.length) {
-            //setImage({
-                //preview: URL.createObjectURL(e.target.files[0]),
-                //raw: e.target.files[0]
-            //});
-        //}
-    //};
-
+    //https://images.saymedia-content.com/.image/t_share/MTgyMjA3MTcxOTU2NzEyNTc5/best-geass-code-geass.jpg
     return (
     <main>
         <Abz>page 2</Abz>
         <div>
-            <form onSubmit={handleClick}>
-            <Button type="submit">Add picture</Button>
-            <input type="file" id="upload-button" value={value} onChange={e => setValue(e.target.value)}></input>
+            <form onSubmit={handleClick} >
+            <Button type="submit" >Add picture</Button>
+            <p><input type="text" value={valuet} onChange={e => setValuet(e.target.value)}></input></p>
+            <input type="url" value={value} onChange={e => setValue(e.target.value)}></input>
             </form>
-            { content && <List content={content} /> }
+            { content && <List content={content?.slice(page*10, (page + 1) * 10)} /> }
         </div>
     </main>
     );
