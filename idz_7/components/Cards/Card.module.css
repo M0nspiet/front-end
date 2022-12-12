@@ -1,0 +1,45 @@
+.card{
+    width: 100%;
+    background-color: var(--background-color);
+    min-height: 250px;
+    color:rgb(214, 163, 255);
+    border-radius: 10px;
+    box-shadow: 4px 8px 20px -9px black;
+    padding: 10px;
+}
+
+.card__image{
+    position: relative;
+    min-height: 40px;
+}
+
+.card__image img{
+    width: 100%;
+    max-height: 700px;
+    max-width: 700px;
+    object-fit: cover;
+}
+
+.card__content{
+    padding-left: 20px;
+}
+
+.card__about{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.card_disc{
+    cursor: pointer;
+    color: indianred;
+    text-decoration: none;
+}
+
+.card_disc:hover{
+    text-decoration: underline;
+
+}
