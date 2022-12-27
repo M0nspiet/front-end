@@ -1,0 +1,25 @@
+:root{
+    --main-color: rgba(17, 2, 31, 0.315);
+    --text-color: rgb(136, 98, 240);
+    --secondary-color: red;
+    --width: 3000px;
+    --background-color: rgba(88, 63, 110, 0.274);
+    --wrapper-horizontal-padding: 30px;
+}
+
+html {
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    font-size: 18px;
+}
+
+body{
+    /* background-color:rgba(127, 255, 212, 0.171); */
+    font-family: "Raleway", sans-serif;
+    color:var(--text-color);
+    background-color:var(--main-color);
+    /* max-width: var(--width); */
+    margin: auto;
+}
